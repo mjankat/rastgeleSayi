@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastgele sayı</title>
+    <style>
+        label {
+            display: block;
+            width: 130px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <label for="minRange">Minimum Değer:</label>
+    <input type="range" id="minRange" min="0" max="100" step="1" value="0">
+    <input type="button" id="minValue" value="Seç" onclick="minSec()">
+    <input type="text" id="seciliMin" value="">
+    <br>
+    <br>
+
+    <label for="maxRange">Maksimum Değer:</label>
+    <input type="range" id="maxRange" min="0" max="100" step="1" value="0">
+    <input type="button" id="maxValue" value="Seç" onclick="maxSec()">
+    <input type="text" id="seciliMax" value="">
+    <br>
+    <br>
+
+    <button onclick="generateRandomNumber()">Üret</button>
+    <hr>
+    <br>
+    
+    <label for="randomNumber">Rastgele Sayı: <span id="randomNumberLabel"></span></label>
+
+    <script>
+        var sayiMin=0;
+        var sayiMax=0;
+        function minSec() {
+            sayiMin = document.getElementById("minRange").value;
+            document.getElementById("seciliMin").value = sayiMin;
+        }
+        function maxSec() {
+            sayiMax = document.getElementById("maxRange").value;
+            document.getElementById("seciliMax").value = sayiMax;
+        }
+
+        function generateRandomNumber(){
+
+            if (isNaN(sayiMin) || isNaN(sayiMax) || sayiMin >= sayiMax) {
+                alert("Geçersiz değerler! Lütfen doğru aralık belirtin.");
+                return;
+            }
+
+            var randomNumber = Math.floor(Math.random() * (sayiMax- sayiMin + 1)) + parseInt(sayiMin);
+
+            document.getElementById("randomNumberLabel").innerHTML = randomNumber;
+
+        }
+    </script>
+</body>
+</html>
